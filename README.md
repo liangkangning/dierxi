@@ -6,7 +6,7 @@ $linkq->tableName='goods';
 
 $linkq->where=['id'=>15]; 
 
-$linkq->field='id,title,type_id,alb_id';
+$linkq->field='id,title';
 
 $linkq->hasOne("type_id",'goods_type',"title","type_name");
 
