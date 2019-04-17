@@ -15,3 +15,6 @@
         $linkq->hasOne('staff_id','staff','name,phone',['name'=>'staff_name','phone'=>'staff_phone']);
         
         $linkq->hasMany('id','order_sell','device_id','sum(real_money) as rm','order_sell','sum');
+
+
+
