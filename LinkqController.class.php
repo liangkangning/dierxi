@@ -81,6 +81,9 @@ class LinkqController extends Controller
     public function field($data){
         $this->field=$data;
     }
+    public function where($data){
+        $this->where=$data;
+    }
      public function hasOne($value,$table,$field,$new_field=null){
          $a=array('value'=>$value,'table'=>$table,'field'=>$field,'new_field'=>$new_field);
          array_push($this->linkqTabel,$a);
