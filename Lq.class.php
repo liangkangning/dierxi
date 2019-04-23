@@ -49,6 +49,7 @@ class Lq extends Controller
 
 //        $tableData=M($table['table_name'])->where($where)->select();
         $query=M($table['table_name'])->where($this->where)->page(self::$p,self::$psize);
+
         if (!is_null($this->field)){
             $query->field($this->field);
         }
@@ -96,8 +97,9 @@ class Lq extends Controller
 
         }
 
-        dump($tableData);
-        exit();
+        return $tableData;
+//        dump($tableData);
+//        exit();
 
     }
 
@@ -246,16 +248,17 @@ class Lq extends Controller
     }
 
     //     获取2维数组中的key，形成数组
-    private function getColumn($array,$key){
+    static function getColumn($array,$key){
         $a=array();
         foreach ($array as $k=>$v){
-            array_push($a,$this->getValue($v,$key));
+            array_push($a,self::getValue($v,$key));
         }
         return $a;
     }
 
+
     //     获取数组中的某个值
-    private  function getValue($array, $key, $default = null)
+    static  function getValue($array, $key, $default = null)
     {
         if ($key instanceof \Closure) {
             return $key($array, $default);
