@@ -24,7 +24,9 @@ class LinkqController extends Controller
       public function findAll(){
           self::$p = I('p')||I('page')?I('p')+I('page'):1;
           self::$psize = I('pagesize')?:20;
+
          $query=M($this->tableName)->where($this->where)->page(self::$p,self::$psize);
+
          if (!is_null($this->field)){
              $this->field=$this->addField($this->field,$this->diff_field);
 
@@ -32,7 +34,7 @@ class LinkqController extends Controller
          }
          $a=$query->order($this->order)->select();
          //end 查询主表的数据
-
+         if (count($a)>0){
          if (count($this->linkqTabel)>0||count($this->linkqTabelHasMany)>0){
 
                  //一对一的循环匹配
@@ -72,6 +74,7 @@ class LinkqController extends Controller
                  }
 
                  $a=$new_a;
+         }
          }
          return $a;
      }
